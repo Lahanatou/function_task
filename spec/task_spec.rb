@@ -97,7 +97,7 @@ RSpec.describe do
       expect(email.decoded).to include "ユーザ登録が完了しました。"
     end
   end
-  describe '7.Acitve Jobを使って、非同期でメールを送信すること' do
+  describe '7.Acitve Jobを実装し、`deliever_later`メソッドを使って非同期でメールを送信すること' do
     it 'ユーザ登録時にキューが追加されること' do
       visit new_user_path
       fill_in 'user_name', with: 'user_name'
