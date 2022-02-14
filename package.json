@@ -1,5 +1,5 @@
 {
-  "name": "rails_functions_task_app",
+  "name": "rails_functions_task",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
