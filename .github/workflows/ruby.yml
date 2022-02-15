@@ -35,13 +35,20 @@ jobs:
           git clone https://github.com/diveintocode-corp/cdp_web_rails_functions_task_evaluation_code.git spec
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-      - name: Test with RSpec
+      - name: Create Feedback
         env:
           RAILS_ENV: "test"
-          DATABASE_URL: "postgres://postgres@localhost:5432/manyo_test"
+          DATABASE_URL: "postgres://postgres@localhost:5432/rails_functions_task_test"
         run: |
           bundle exec rails db:setup
           bundle exec rspec -r ./spec/my_formatter.rb -f MyFormatter -o .github/feedback_template.md
+        continue-on-error: true
+      - name: Rspec Results
+        env:
+          RAILS_ENV: "test"
+          DATABASE_URL: "postgres://postgres@localhost:5432/rails_functions_task_test"
+        run: |
+          bundle exec rspec
         continue-on-error: true
       - uses: JasonEtco/create-an-issue@v2
         env:
