@@ -31,6 +31,7 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Create Evaluation File
         run: |
+          rm -rf spec
           echo -e "---\ntitle: DIVE INTO CODE：課題評価に関するご連絡\n---\n## 課題の評価が実行できませんでした。\n### 以下の項目を確認してください。\n- RSpecの実行に必要なgem（rspec-railsとrexml）をインストールしていますか？\n- ローカルでRspecを実行できていますか？\n**上記を確認して解決しない場合、お手数ですが、DIVERの質問投稿画面にこちらのリポジトリのURLを投稿いただき、課題の評価が行われない旨をお知らせください。**" > .github/execution_error_template.md
           git clone https://github.com/diveintocode-corp/cdp_web_rails_functions_task_evaluation_code.git spec
           git config --local user.email "action@github.com"
