@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      redirect_to user_path(@user.id), notice: 'アカウントを登録しました。'
+      redirect_to user_path(@user.id), notice: 'Non spécifié Compte enregistré.'
     else
       render :new
     end
@@ -18,12 +18,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    #devise_mailer.send("sample@gmail.com").deliver_later
+    ContactMailer.contact("sample@gmail.com").deliver_later
+
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_image)
   end
 
   def correct_user
